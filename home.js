@@ -1,6 +1,7 @@
 
 const validPin = 1234
 
+// add money btn
 
 document
   .getElementById("add-money-btn")
@@ -34,6 +35,24 @@ document
       totalNewAvailableBalance;
   });
 
+
+
+  // cashout money feature
+  
+  document.getElementById("withdraw-btn").addEventListener("click",function(e){
+    e.preventDefault();
+
+    const withdrawAmount = parseInt(document.getElementById("withdraw-amount").value);
+
+    const availableBalance = parseInt(document.getElementById("available-balance").innerText);
+
+
+
+    const totalNewAvaileableBalance = availableBalance - withdrawAmount;
+
+    document.getElementById("available-balance").innerText =
+     totalNewAvaileableBalance;
+  })
 
 
 // toggleing feature
