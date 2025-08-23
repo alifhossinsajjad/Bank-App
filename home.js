@@ -38,20 +38,40 @@ document
 
 
   // cashout money feature
+
+
+  const withdrawValidPin = 1234
   
+
+
   document.getElementById("withdraw-btn").addEventListener("click",function(e){
     e.preventDefault();
+
+    
 
     const withdrawAmount = parseInt(document.getElementById("withdraw-amount").value);
 
     const availableBalance = parseInt(document.getElementById("available-balance").innerText);
 
 
-
     const totalNewAvaileableBalance = availableBalance - withdrawAmount;
 
     document.getElementById("available-balance").innerText =
      totalNewAvaileableBalance;
+
+    const withdrawAgentNumber = document.getElementById("withdraw-agent-number").value;
+    const withdrawPinNumber = parseInt(document.getElementById("withdraw-pin").value);
+
+    if(withdrawAgentNumber.length <11){
+        alert("please valid number");
+        return;
+    }
+    if(withdrawPinNumber !== withdrawValidPin ){
+
+        alert("please enter the valid pin");
+        return;
+    }
+
   })
 
 
