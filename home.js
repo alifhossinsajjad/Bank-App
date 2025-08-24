@@ -1,5 +1,7 @@
 const validPin = 1234;
 
+// functions get input values number
+
 function getInputValueNumber(id) {
   const inputField = document.getElementById(id);
   const inputFieldValue = inputField.value;
@@ -7,12 +9,35 @@ function getInputValueNumber(id) {
   return inputFieldValueNumber;
 }
 
+
+// functions get input values 
+
 function getInputValue(id) {
   const inputField = document.getElementById(id);
   const inputFieldValue = inputField.value;
   return inputFieldValue;
 }
 
+// functions get innertext 
+
+function getInnerText(id){
+  const eliment = document.getElementById(id);
+  const elimentVlue = eliment.innerText
+  const elimentValuNumber = parseInt(elimentVlue);
+  return elimentValuNumber;
+}
+
+
+
+// function set a innertext
+
+function setInnerText (value) {
+  const availableBalance = document.getElementById("available-balance").innerText = value
+
+  const availableNewBalance = availableBalance;
+  return availableNewBalance;
+
+}
 // add money btn
 
 document
@@ -28,9 +53,7 @@ document
 
     const pinNumber = getInputValueNumber("add-pin")
 
-    const availeableBalance = parseInt(
-      document.getElementById("available-balance").innerText
-    );
+    const availeableBalance = getInnerText("available-balance")
 
     if (accountNumber.length < 11) {
       alert("Please provide valid account number");
@@ -44,8 +67,10 @@ document
 
     const totalNewAvailableBalance = amount + availeableBalance;
 
-    document.getElementById("available-balance").innerText =
-      totalNewAvailableBalance;
+    // document.getElementById("available-balance").innerText =
+    //   totalNewAvailableBalance;
+
+    setInnerText(totalNewAvailableBalance);
   });
 
 // cashout money feature
@@ -57,21 +82,18 @@ document.getElementById("withdraw-btn").addEventListener("click", function (e) {
 
   const withdrawAmount = getInputValueNumber("withdraw-amount")
 
-  const availableBalance = parseInt(
-    document.getElementById("available-balance").innerText
-  );
+  const availableBalance = getInnerText("available-balance")
 
   const totalNewAvaileableBalance = availableBalance - withdrawAmount;
 
-  document.getElementById("available-balance").innerText =
-    totalNewAvaileableBalance;
+  // document.getElementById("available-balance").innerText =
+  //   totalNewAvaileableBalance;
 
-  const withdrawAgentNumber = document.getElementById(
-    "withdraw-agent-number"
-  ).value;
-  const withdrawPinNumber = parseInt(
-    document.getElementById("withdraw-pin").value
-  );
+   setInnerText(totalNewAvaileableBalance);
+
+  const withdrawAgentNumber = getInputValue("withdraw-agent-number")
+  
+  const withdrawPinNumber = getInputValueNumber("withdraw-pin")
 
   if (withdrawAgentNumber.length < 11) {
     alert("please valid number");
