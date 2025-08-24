@@ -1,5 +1,17 @@
+const validPin = 1234;
 
-const validPin = 1234
+function getInputValueNumber(id) {
+  const inputField = document.getElementById(id);
+  const inputFieldValue = inputField.value;
+  const inputFieldValueNumber = parseInt(inputFieldValue);
+  return inputFieldValueNumber;
+}
+
+function getInputValue(id) {
+  const inputField = document.getElementById(id);
+  const inputFieldValue = inputField.value;
+  return inputFieldValue;
+}
 
 // add money btn
 
@@ -8,12 +20,13 @@ document
   .addEventListener("click", function (e) {
     e.preventDefault();
 
-    const bank = document.getElementById("bank").value;
+    const bank = getInputValue("bank")
+    
     const accountNumber = document.getElementById("account-number").value;
 
-    const amount = parseInt(document.getElementById("add-amount").value);
+    const amount = getInputValueNumber("add-amount")
 
-    const pinNumber = parseInt(document.getElementById("add-pin").value);
+    const pinNumber = getInputValueNumber("add-pin")
 
     const availeableBalance = parseInt(
       document.getElementById("available-balance").innerText
@@ -24,9 +37,9 @@ document
       return;
     }
 
-    if(pinNumber !== validPin){
-        alert("please enter valid pin number")
-        return;
+    if (pinNumber !== validPin) {
+      alert("please enter valid pin number");
+      return;
     }
 
     const totalNewAvailableBalance = amount + availeableBalance;
@@ -35,59 +48,53 @@ document
       totalNewAvailableBalance;
   });
 
+// cashout money feature
 
+const withdrawValidPin = 1234;
 
-  // cashout money feature
+document.getElementById("withdraw-btn").addEventListener("click", function (e) {
+  e.preventDefault();
 
+  const withdrawAmount = getInputValueNumber("withdraw-amount")
 
-  const withdrawValidPin = 1234
-  
+  const availableBalance = parseInt(
+    document.getElementById("available-balance").innerText
+  );
 
+  const totalNewAvaileableBalance = availableBalance - withdrawAmount;
 
-  document.getElementById("withdraw-btn").addEventListener("click",function(e){
-    e.preventDefault();
+  document.getElementById("available-balance").innerText =
+    totalNewAvaileableBalance;
 
-    
+  const withdrawAgentNumber = document.getElementById(
+    "withdraw-agent-number"
+  ).value;
+  const withdrawPinNumber = parseInt(
+    document.getElementById("withdraw-pin").value
+  );
 
-    const withdrawAmount = parseInt(document.getElementById("withdraw-amount").value);
-
-    const availableBalance = parseInt(document.getElementById("available-balance").innerText);
-
-
-    const totalNewAvaileableBalance = availableBalance - withdrawAmount;
-
-    document.getElementById("available-balance").innerText =
-     totalNewAvaileableBalance;
-
-    const withdrawAgentNumber = document.getElementById("withdraw-agent-number").value;
-    const withdrawPinNumber = parseInt(document.getElementById("withdraw-pin").value);
-
-    if(withdrawAgentNumber.length <11){
-        alert("please valid number");
-        return;
-    }
-    if(withdrawPinNumber !== withdrawValidPin ){
-
-        alert("please enter the valid pin");
-        return;
-    }
-
-  })
-
+  if (withdrawAgentNumber.length < 11) {
+    alert("please valid number");
+    return;
+  }
+  if (withdrawPinNumber !== withdrawValidPin) {
+    alert("please enter the valid pin");
+    return;
+  }
+});
 
 // toggleing feature
 
-document.getElementById("add-button").addEventListener("click", function(){
-    document.getElementById("cash-out-parent").style.display = "none"
+document.getElementById("add-button").addEventListener("click", function () {
+  document.getElementById("cash-out-parent").style.display = "none";
 
-    document.getElementById("add-money-parent").style.display = "block"
-    
-})
+  document.getElementById("add-money-parent").style.display = "block";
+});
 
+document
+  .getElementById("cash-out-button")
+  .addEventListener("click", function () {
+    document.getElementById("add-money-parent").style.display = "none";
 
-document.getElementById("cash-out-button").addEventListener("click", function(){
-    document.getElementById("add-money-parent").style.display = "none"
-
-    document.getElementById("cash-out-parent").style.display = "block"
-    
-})
+    document.getElementById("cash-out-parent").style.display = "block";
+  });
