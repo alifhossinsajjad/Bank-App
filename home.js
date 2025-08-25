@@ -80,6 +80,11 @@ document
 
     const amount = getInputValueNumber("add-amount");
 
+    if(amount <= 0  ){
+      alert ("Please inter the valid Amount Number")
+      return;
+    }
+
     const pinNumber = getInputValueNumber("add-pin");
 
     const availeableBalance = getInnerText("available-balance");
@@ -110,6 +115,7 @@ document
     transectionData.push(data);
   });
 
+  
 // cashout money feature
 
 const withdrawValidPin = 1234;
@@ -120,6 +126,11 @@ document.getElementById("withdraw-btn").addEventListener("click", function (e) {
   const withdrawAmount = getInputValueNumber("withdraw-amount");
 
   const availableBalance = getInnerText("available-balance");
+
+  if (withdrawAmount <=0 || withdrawAmount > availableBalance){
+    alert("insuficence balence");
+    return;
+  }
 
   const totalNewAvailableBalance = availableBalance - withdrawAmount;
 
